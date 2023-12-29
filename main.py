@@ -124,6 +124,8 @@ def renov_equal(event):
             hidden -= float(stext.get())
         elif preoper == '*':
             hidden *= float(stext.get())
+        elif preoper == '**':
+            hidden = hidden ** float(stext.get())
         elif preoper == '/':
             try:
                 hidden /= float(stext.get())
@@ -185,7 +187,14 @@ def log(event):
 
 
 def xiny(event):
-    stext.set('Функция не готова')
+    global hidden, preoper
+    if not hidden:
+        hidden = float(stext.get())
+    else:
+        if preoper == '**':
+            hidden = hidden ** float(stext.get())
+    stext.set('')
+    preoper = '**'
 
 
 def expon(event):
